@@ -7,7 +7,7 @@
 read_nc(path)
 }
 \arguments{
-\item{path}{array dari netCDF. Gunakan NcToArray untuk menghasilkan array dari netCDF.}
+\item{path}{lokasi dokumen gfs.0p25 format nc}
 }
 \value{
 dataframe
