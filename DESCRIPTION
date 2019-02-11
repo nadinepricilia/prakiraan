@@ -1,12 +1,22 @@
 Package: prakiraan
-Title: What the Package Does (One Line, Title Case)
+Title: Verifikasi dan Pengolahan Statistik pada Data Prediksi Cuaca
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Nadine",
+           family = "Pricilia",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "nadinepricilia@meteonesia.id")
+Description: Paket ini menyiapkan data GFS dari bentuk netCDF menjadi dataframe untuk diolah lebih lanjut menggunakan data observasi lapangan.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    easyNCDF,
+    arrayhelpers,
+    dplyr,
+    stringr,
+    tidyr,
+    magrittr
+RoxygenNote: 6.1.1
+URL: https://github.com/nadinepricilia/prakiraan
+BugReports: https://github.com/nadinepricilia/prakiraan/issues
