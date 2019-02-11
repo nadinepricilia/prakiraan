@@ -6,6 +6,10 @@ Authors@R:
            family = "Pricilia",
            role = c("aut", "cre"),
            email = "nadinepricilia@meteonesia.id")
+    person(given = "Muhammad Aswan",
+           family = "Syahputra",
+           role = c("cre"),
+           email = "aswansyahputra@sensolution.id")
 Description: Paket ini menyiapkan data GFS dari bentuk netCDF menjadi dataframe untuk diolah lebih lanjut menggunakan data observasi lapangan.
 License: GPL-3
 Encoding: UTF-8
@@ -17,7 +21,8 @@ Imports:
     stringr,
     tidyr,
     magrittr,
-    janitor
+    janitor,
+    readr
 RoxygenNote: 6.1.1
 URL: https://github.com/nadinepricilia/prakiraan
 BugReports: https://github.com/nadinepricilia/prakiraan/issues

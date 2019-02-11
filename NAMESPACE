@@ -2,10 +2,13 @@
 
 export("%>%")
 export(read_nc)
+export(set_timeframe)
 import(arrayhelpers)
 import(dplyr)
 import(easyNCDF)
+import(purrr)
 import(stringr)
 import(tidyr)
 importFrom(janitor,clean_names)
 importFrom(magrittr,"%>%")
+importFrom(readr,parse_number)

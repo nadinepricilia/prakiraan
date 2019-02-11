@@ -5,15 +5,26 @@
 #' @param path lokasi dokumen gfs.0p25 format nc
 #'
 #' @import easyNCDF arrayhelpers dplyr stringr tidyr
+#' @importFrom readr parse_number
 #' @importFrom janitor clean_names
+#'
 #' @return dataframe
+#'
+#' @examples
+#'
+#' read_nc(path = "/home/nadinepricilia/Documents/meteonesia/MVP 1 Weather Forecast Surabaya/Stats_PostPro_GFS/Data_mentah/netCDF/gfs.0p25.2015011500.f006.grib2.pricilia336642.nc")
 #'
 #' @export
 
 read_nc <- function(path) {
-  path %>%
-    NcOpen() %>%
-    NcToArray(vars_to_read = str_subset(NcReadVarNames(.), pattern = "^(APCP|TMAX|TMIN|lat|lon)")) %>%
+  nc_file <- NcOpen(path)
+
+  sub_nc <- nc_file %>%
+    NcToArray(vars_to_read = str_subset(NcReadVarNames(.), pattern = "^(APCP|TMAX|TMIN|lat|lon)"))
+
+  rm(nc_file)
+
+  sub_nc %>%
     array2df() %>%
     as_tibble() %>%
     janitor::clean_names() %>%
@@ -31,5 +42,11 @@ read_nc <- function(path) {
     fill_("lon") %>%
     arrange_("lat_0", "lon_0") %>%
     fill_("lat") %>%
-    select(-lon_0, -lat_0)
+    mutate(
+      issue_time = str_extract(path, pattern = "[0-9]{10}") %>%
+        as.POSIXct(, format = "%Y%m%d%H", tz = "UCT"),
+      cycle = str_extract(path, pattern = "f[0-9]{3}") %>%
+        parse_number()
+    ) %>%
+    select(issue_time, cycle, everything(), -lon_0, -lat_0)
 }

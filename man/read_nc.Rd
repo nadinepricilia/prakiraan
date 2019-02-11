@@ -15,3 +15,8 @@ dataframe
 \description{
 Menghasilkan dataframe untuk parameter akumulasi presipitasi, temperatur minimum, temperatur maksimum, lintang, dan bujur yang berasal dari data gfs.0p25.
 }
+\examples{
+
+read_nc(path = "/home/nadinepricilia/Documents/meteonesia/MVP 1 Weather Forecast Surabaya/Stats_PostPro_GFS/Data_mentah/netCDF/gfs.0p25.2015011500.f006.grib2.pricilia336642.nc")
+
+}
