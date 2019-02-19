@@ -22,7 +22,7 @@ read_nc <- function(path) {
   sub_nc <- nc_file %>%
     NcToArray(vars_to_read = str_subset(NcReadVarNames(.), pattern = "^(APCP|TMAX|TMIN|lat|lon)"))
 
-  rm(nc_file)
+  NcClose(nc_file)
 
   sub_nc %>%
     array2df() %>%
