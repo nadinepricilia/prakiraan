@@ -7,7 +7,7 @@
 #' @param to tanggal akhir dalam format "YYYY-MM-DD"
 #' @param cycles siklus yang akan diambil
 #'
-#' @import stringr purrr
+#' @import stringr future furrr
 #'
 #' @return vektor karakter dari alamat berkas
 #'
@@ -22,6 +22,7 @@
 #' @export
 
 set_timeframe <- function(dir, from, to, cycles) {
+  plan(multiprocess)
   timeframe <- seq(from = as.Date(from), to = as.Date(to), by = "day") %>%
     format("%Y%m%d")
   cycles <-
@@ -30,9 +31,9 @@ set_timeframe <- function(dir, from, to, cycles) {
     str_pad(width = 3, pad = "0") %>%
     str_c("f", .)
   list_files <- list.files(path = dir, full.names = TRUE)
-  sublist_files <- map(timeframe, str_subset, string = list_files) %>%
+  sublist_files <- future_map(timeframe, str_subset, string = list_files) %>%
     unlist()
-  res <- map(cycles, str_subset, string = sublist_files) %>%
+  res <- future_map(cycles, str_subset, string = sublist_files) %>%
     unlist()
   return(res)
 }
