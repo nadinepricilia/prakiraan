@@ -4,11 +4,13 @@
 #'
 #' @param path lokasi dokumen gfs.0p25 format nc
 #'
-#' @import easyNCDF arrayhelpers dplyr stringr tidyr
+#' @import easyNCDF dplyr stringr tidyr
+#' @importFrom arrayhelpers array2df
 #' @importFrom readr parse_number
 #' @importFrom janitor clean_names
+#' @importFrom tibble tibble
 #'
-#' @return dataframe
+#' @return [tibble][tibble::tibble-package]
 #'
 #' @examples
 #'
@@ -22,10 +24,10 @@ read_nc <- function(path) {
   sub_nc <- nc_file %>%
     NcToArray(vars_to_read = str_subset(NcReadVarNames(.), pattern = "^(APCP|TMAX|TMIN|lat|lon)"))
 
-  rm(nc_file)
+  NcClose(nc_file)
 
   sub_nc %>%
-    array2df() %>%
+    arrayhelpers::array2df() %>%
     as_tibble() %>%
     janitor::clean_names() %>%
     select(-initial_time0_hours) %>%

@@ -10,7 +10,7 @@ read_nc(path)
 \item{path}{lokasi dokumen gfs.0p25 format nc}
 }
 \value{
-dataframe
+[tibble][tibble::tibble-package]
 }
 \description{
 Menghasilkan dataframe untuk parameter akumulasi presipitasi, temperatur minimum, temperatur maksimum, lintang, dan bujur yang berasal dari data gfs.0p25.
