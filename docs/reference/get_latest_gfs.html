@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Membaca netCDF gfs.0p25 — read_nc • prakiraan</title>
+<title>Mengunduh GFS 0.25 Terkini — get_latest_gfs • prakiraan</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Membaca netCDF gfs.0p25 — read_nc" />
+<meta property="og:title" content="Mengunduh GFS 0.25 Terkini — get_latest_gfs" />
 
-<meta property="og:description" content="Menghasilkan dataframe untuk parameter akumulasi presipitasi, temperatur minimum, temperatur maksimum, lintang, dan bujur yang berasal dari data gfs.0p25." />
+<meta property="og:description" content="Fungsi untuk mengunduh GFS 0.25 terkini dengan memanfaatkan NetCDF Subset Service" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,50 +99,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Membaca netCDF gfs.0p25</h1>
-    <small class="dont-index">Source: <a href='https://github.com/nadinepricilia/prakiraan/blob/master/R/read_nc.R'><code>R/read_nc.R</code></a></small>
-    <div class="hidden name"><code>read_nc.Rd</code></div>
+    <h1>Mengunduh GFS 0.25 Terkini</h1>
+    <small class="dont-index">Source: <a href='https://github.com/nadinepricilia/prakiraan/blob/master/R/get_latest_gfs.R'><code>R/get_latest_gfs.R</code></a></small>
+    <div class="hidden name"><code>get_latest_gfs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Menghasilkan dataframe untuk parameter akumulasi presipitasi, temperatur minimum, temperatur maksimum, lintang, dan bujur yang berasal dari data gfs.0p25.</p>
+    <p>Fungsi untuk mengunduh GFS 0.25 terkini dengan memanfaatkan NetCDF Subset Service</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_nc</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>get_latest_gfs</span>(<span class='kw'>var</span> <span class='kw'>=</span> <span class='st'>"Total_precipitation_surface_Mixed_intervals_Accumulation"</span>,
+  <span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"&amp;north=6&amp;west=90&amp;east=141&amp;south=-11&amp;temporal=all"</span>,
+  <span class='kw'>destfile</span> <span class='kw'>=</span> <span class='st'>"latest_gfs.nc"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>lokasi dokumen gfs.0p25 format nc</p></td>
+      <th>var</th>
+      <td><p>nama variabel, jika lebih dari satu pisahkan dengan tanda koma tanpa spasi</p></td>
+    </tr>
+    <tr>
+      <th>query</th>
+      <td><p>tambahan query</p></td>
+    </tr>
+    <tr>
+      <th>destfile</th>
+      <td><p>destinasi berkas GFS unduhan</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>[tibble][tibble::tibble-package]</p>
+    <p>berkas GFS dan URL NCSS</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>read_nc</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"/home/nadinepricilia/Documents/meteonesia/MVP 1 Weather Forecast Surabaya/Stats_PostPro_GFS/Data_mentah/netCDF/gfs.0p25.2015011500.f006.grib2.pricilia336642.nc"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 25 x 7</span><span>
-#&gt;    issue_time          cycle   lat   lon  prec  tmax  tmin
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7</span><span>     112  2.80   306.  299 
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7</span><span>     112. 1.80   307.  300.
-#&gt; </span><span style='color: #555555;'> 3</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7</span><span>     112. 1.70   307.  301.
-#&gt; </span><span style='color: #555555;'> 4</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7</span><span>     113. 0      305.  300.
-#&gt; </span><span style='color: #555555;'> 5</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7</span><span>     113  0      306.  300.
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7.25</span><span>  112  0.400  306.  299 
-#&gt; </span><span style='color: #555555;'> 7</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7.25</span><span>  112. 0.200  306.  299.
-#&gt; </span><span style='color: #555555;'> 8</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7.25</span><span>  112. 1.5    307.  300.
-#&gt; </span><span style='color: #555555;'> 9</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7.25</span><span>  113. 0      307.  300.
-#&gt; </span><span style='color: #555555;'>10</span><span> 2015-01-15 </span><span style='color: #555555;'>00:00:00</span><span>     6 -</span><span style='color: #BB0000;'>7.25</span><span>  113  0      304.  300.
-#&gt; </span><span style='color: #555555;'># … with 15 more rows</span><span></div><div class='input'>
-</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -150,9 +143,7 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

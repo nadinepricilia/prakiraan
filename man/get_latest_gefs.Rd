@@ -7,10 +7,10 @@
 
   get_latest_gefs(var = "Total_precipitation_surface_6_Hour_Accumulation_ens",
   query = "&north=6&west=90&east=141&south=-11&temporal=all",
-  destfile = "latest.nc")
+  destfile = "latest_gefs.nc")
 }
 \arguments{
-\item{var}{nama variabel}
+\item{var}{nama variabel, jika lebih dari satu pisahkan dengan tanda koma tanpa spasi}
 
 \item{query}{tambahan query}
 

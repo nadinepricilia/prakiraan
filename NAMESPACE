@@ -2,6 +2,7 @@
 
 export("%>%")
 export(get_latest_gefs)
+export(get_latest_gfs)
 export(query_ncss)
 export(read_nc)
 export(set_timeframe)

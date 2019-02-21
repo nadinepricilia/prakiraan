@@ -2,7 +2,7 @@
 #'
 #' Fungsi untuk mengunduh GEFS terkini dengan memanfaatkan NetCDF Subset Service
 #'
-#' @param var nama variabel
+#' @param var nama variabel, jika lebih dari satu pisahkan dengan tanda koma tanpa spasi
 #' @param query tambahan query
 #' @param destfile destinasi berkas GEFS unduhan
 #'
