@@ -10,7 +10,8 @@
 #' @param query tambahan query
 #'
 #' @import easyNCDF
-#'
+#' @importFrom glue glue
+#' 
 #' @return kueri NCSS
 #'
 #' @export
